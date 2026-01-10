@@ -4,9 +4,9 @@ import User from '../models/User';
 import { AuthRequest } from '../types';
 
 // @desc    Auth user & get token
-// @route   POST /api/users/auth
+// @route   POST /api/users/login
 // @access  Public
-export const authUser = async (req: Request, res: Response) => {
+export const loginUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email }).select('+password');

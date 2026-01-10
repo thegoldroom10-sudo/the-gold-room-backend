@@ -8,7 +8,7 @@ This is the backend repository for **The Gold Room** project. Follow the steps b
 Clone the project from GitHub using the following command:
 
 ```bash
-git clone https://github.com/username/the-gold-room-backend.git
+git clone https://github.com/thegoldroom10-sudo/the-gold-room-backend.git
 ```
 
 cd the-gold-room-backend
