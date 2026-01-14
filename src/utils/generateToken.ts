@@ -19,6 +19,8 @@ export const generateTokens = (res: Response, user: any): void => {
     throw new Error('JWT secrets are not defined');
   }
 
+  const isProduction = process.env.NODE_ENV === 'production';
+
   const payload: JwtPayload = {
     id: user._id.toString(),
     name: user.name,
@@ -41,16 +43,16 @@ export const generateTokens = (res: Response, user: any): void => {
   // Access token cookie
   res.cookie('accessToken', accessToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV !== 'development',
-    sameSite: 'strict',
+    secure: isProduction,
+    sameSite: isProduction ? 'none' : 'lax',
     maxAge: ACCESS_COOKIE_MAX_AGE,
   });
 
   // Refresh token cookie
   res.cookie('refreshToken', refreshToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV !== 'development',
-    sameSite: 'strict',
+    secure: isProduction,
+    sameSite: isProduction ? 'none' : 'lax',
     path: '/api/auth/refresh',
     maxAge: REFRESH_COOKIE_MAX_AGE,
   });
