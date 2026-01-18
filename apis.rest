@@ -5,7 +5,7 @@
 #############################################
 
 @localBaseUrl = http://localhost:3000
-@prodBaseUrl = https://the-gold-room-backend.onrender.com
+@prodBaseUrl = https://the-gold-room-backend-8c98.onrender.com
 @baseUrl = {{localBaseUrl}}
 
 # Auth token
