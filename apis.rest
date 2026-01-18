@@ -1,7 +1,7 @@
 #############################################
 # REST API Endpoints
 # Project: the-gold-room-backend
-# Github Repository - 
+# Github Repository - https://github.com/thegoldroom10-sudo/the-gold-room-backend.git
 #############################################
 
 @localBaseUrl = http://localhost:3000
