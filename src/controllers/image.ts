@@ -13,7 +13,12 @@ export const uploadImage = async (req: Request, res: Response) => {
     if (!title) {
       return res.status(400).json({ message: 'Title is required' });
     }
-    const parsedTags = typeof tags === 'string' ? tags.split(',').map(t => t.trim().toLowerCase()) : [];
+    const parsedTags =
+      typeof tags === 'string'
+        ? tags
+            .split(',') // split by comma
+            .map(tag => tag.trim().toLowerCase()) // remove spaces and lowercase
+        : [];
 
     const imageData = await uploadImageToCloudinary(req.file.buffer);
 
