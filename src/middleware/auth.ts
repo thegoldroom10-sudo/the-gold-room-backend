@@ -17,12 +17,12 @@ export const protect = (req: Request, res: Response, next: NextFunction) => {
   }
 
   try {
-    const decoded = jwt.verify(token, secret) as { userId: string; role: string };
+    const decoded = jwt.verify(token, secret) as { id: string; role: string };
 
-    req.user = { id: decoded.userId, role: decoded.role };
+    req.user = { id: decoded.id, role: decoded.role };
     next();
   } catch (error) {
     res.status(401);
-    throw new Error('Token invalid or expired');
+    throw new Error('Unauthorized');
   }
 };

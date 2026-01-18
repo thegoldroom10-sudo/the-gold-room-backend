@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import { connectDatabase, initCollections } from './config';
 import userRoutes from './routes/user';
+import imageRoutes from './routes/image'
 import { errorHandler, notFound } from './middleware/error';
 
 dotenv.config();
@@ -38,6 +39,7 @@ const startServer = async () => {
     await connectDatabase();
     await initCollections();
     app.use('/api/users', userRoutes);
+    app.use('/api/images', imageRoutes);
     app.use(notFound);
     app.use(errorHandler);
 

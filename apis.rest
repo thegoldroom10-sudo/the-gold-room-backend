@@ -1,0 +1,118 @@
+#############################################
+# REST API Endpoints
+# Project: the-gold-room-backend
+# Github Repository - 
+#############################################
+
+@localBaseUrl = http://localhost:3000
+@prodBaseUrl = https://the-gold-room-backend.onrender.com
+@baseUrl = {{localBaseUrl}}
+
+# Auth token
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmNmODgwNDA2YTIxZGM2YzAzYTU4NyIsIm5hbWUiOiJUZXN0IEFjY291bnQiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Njg3NTI0ODgsImV4cCI6MTc2ODc1NDI4OH0.CTZ54E6L9tkUT3WxG-sJq52JlRiwNs9DRqk8OOYFWj4
+
+
+#############################################
+# @name CreateUser
+# @desc Create a new user account
+# @access Public
+# @route POST /api/users
+#############################################
+
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "test@gmail.com",
+  "password": "Test@12345"
+}
+
+
+#############################################
+# @name UserLogin
+# @desc Authenticate user with email & password and return JWT access token
+# @access Public
+# @route POST /api/users/login
+#############################################
+POST {{baseUrl}}/api/users/login
+Content-Type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "Test@12345"
+}
+
+
+#############################################
+# @name UserLogOut
+# @desc Log out the authenticated user by clearing JWT and refresh token cookies
+# @access Public
+# @route POST /api/users/logout
+#############################################
+POST {{baseUrl}}/api/users/logout
+Content-Type: application/json
+
+#############################################
+# @name UserLogOut
+# @desc Log out the authenticated user by clearing JWT and refresh token cookies
+# @access Public
+# @route POST /api/users/logout
+#############################################
+POST {{baseUrl}}/api/users/logout
+Content-Type: application/json
+
+
+#############################################
+# @name GetUserProfile
+# @desc Get logged-in user's profile information
+# @access Private
+# @route GET /api/users/profile
+#############################################
+GET {{baseUrl}}/api/users/profile
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+
+
+#############################################
+# @name UpdateUserProfile
+# @desc Update logged-in user's profile details
+# @access Private
+# @route PUT /api/users/profile
+#############################################
+PUT {{baseUrl}}/api/users/profile
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Test Account"
+}
+
+
+#############################################
+# @name UploadFile
+# @desc Upload a file with additional metadata (tags and title)
+# @access Private
+# @route POST /api/images/upload
+#############################################
+POST {{baseUrl}}/api/images/upload
+Content-Type: multipart/form-data
+Authorization: Bearer {{authToken}}
+
+FormatData
+file: image
+tags: ["dementia", "grey"]
+title: Dementia Image
+
+
+#############################################
+# @name GetImages
+# @desc Retrieves all the Images to the UI
+# @access Private
+# @route GET /api/images
+#############################################
+GET {{baseUrl}}/api/images
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
