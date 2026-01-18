@@ -101,9 +101,9 @@ Content-Type: multipart/form-data
 Authorization: Bearer {{authToken}}
 
 FormatData
-file: image
-tags: ["dementia", "grey"]
-title: Dementia Image
+file: image                       # Single Image file Upload
+tags: "dementia,grey"             # comma Seperated in string
+title: Dementia Image             # Image title in String
 
 
 #############################################
