@@ -9,7 +9,7 @@
 @baseUrl = {{localBaseUrl}}
 
 # Auth token
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmNmODgwNDA2YTIxZGM2YzAzYTU4NyIsIm5hbWUiOiJUZXN0IEFjY291bnQiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Njg4ODg3NzMsImV4cCI6MTc2ODg5MDU3M30.FlsqbVC2Pr8A-6PdSdmdnrQHFFyhFiZmBSWWeKneJxU
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmNmODgwNDA2YTIxZGM2YzAzYTU4NyIsIm5hbWUiOiJUZXN0IEFjY291bnQiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Njg5MjUwMjQsImV4cCI6MTc2ODkyNjgyNH0.zAsO4rNJwvvvQrCjRXikOR_tmDsOVniobZjC5xB9X8M
 
 
 #############################################
@@ -112,6 +112,7 @@ title: Dementia Image             # Image title in String
 # @desc Retrieves all the Images to the UI
 # @access Private
 # @route GET /api/images
+# To filter only images with tag abc add query param {{baseUrl}}/api/images?tag=abc
 #############################################
 GET {{baseUrl}}/api/images
 Content-Type: application/json
