@@ -5,7 +5,15 @@ import { protect } from '../middleware/auth';
 
 const router = Router();
 
-router.post('/upload', protect, upload.single('file'), uploadImage);
+router.post(
+  '/upload',
+  protect,
+  upload.fields([
+    { name: 'original', maxCount: 1 },
+    { name: 'cropped', maxCount: 1 },
+  ]),
+  uploadImage,
+);
 router.get('/', protect, getImages);
 
 export default router;

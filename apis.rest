@@ -9,7 +9,7 @@
 @baseUrl = {{localBaseUrl}}
 
 # Auth token
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmNmODgwNDA2YTIxZGM2YzAzYTU4NyIsIm5hbWUiOiJUZXN0IEFjY291bnQiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Njg3NTI0ODgsImV4cCI6MTc2ODc1NDI4OH0.CTZ54E6L9tkUT3WxG-sJq52JlRiwNs9DRqk8OOYFWj4
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmNmODgwNDA2YTIxZGM2YzAzYTU4NyIsIm5hbWUiOiJUZXN0IEFjY291bnQiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Njg4ODg3NzMsImV4cCI6MTc2ODg5MDU3M30.FlsqbVC2Pr8A-6PdSdmdnrQHFFyhFiZmBSWWeKneJxU
 
 
 #############################################
@@ -101,8 +101,9 @@ Content-Type: multipart/form-data
 Authorization: Bearer {{authToken}}
 
 FormatData
-file: image                       # Single Image file Upload
-tags: "dementia,grey"             # comma Seperated in string
+original: Original Image          # Original Image file Upload
+cropped: Cropped Image            # Cropped Image file Upload
+tags: "dementia,grey"             # Comma Seperated in string
 title: Dementia Image             # Image title in String
 
 

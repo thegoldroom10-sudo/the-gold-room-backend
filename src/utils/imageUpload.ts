@@ -29,11 +29,10 @@ export const uploadToCloudinary = (
 };
 
 // Full upload function for original + cropped
-export const uploadImageToCloudinary = async (buffer: Buffer): Promise<ImageData> => {
-  const original = await uploadToCloudinary(buffer, 'images/original');
-  const cropped = await uploadToCloudinary(buffer, 'images/cropped', [
-    { width: 400, height: 400, crop: 'fill', gravity: 'auto' },
-  ]);
+export const uploadImageToCloudinary = async (originalBuffer: Buffer, croppedBuffer: Buffer): Promise<ImageData> => {
+  const original = await uploadToCloudinary(originalBuffer, 'images/original');
+
+  const cropped = await uploadToCloudinary(croppedBuffer, 'images/cropped');
 
   return { original, cropped };
 };

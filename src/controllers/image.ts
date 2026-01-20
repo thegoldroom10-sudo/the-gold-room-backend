@@ -5,22 +5,24 @@ import { uploadImageToCloudinary } from '../utils/imageUpload';
 export const uploadImage = async (req: Request, res: Response) => {
   try {
     const { title, tags } = req.body;
-    const userId = req.user.id; // from auth middleware
-    if (!req.file || !req.file.buffer) {
-      return res.status(400).json({ message: 'Image file is required' });
+    const userId = req.user.id;
+    const files = req.files as {
+      original?: Express.Multer.File[];
+      cropped?: Express.Multer.File[];
+    };
+
+    if (!files?.original?.[0] || !files?.cropped?.[0]) {
+      return res.status(400).json({
+        message: 'Both original and cropped images are required',
+      });
     }
 
     if (!title) {
       return res.status(400).json({ message: 'Title is required' });
     }
-    const parsedTags =
-      typeof tags === 'string'
-        ? tags
-            .split(',') // split by comma
-            .map(tag => tag.trim().toLowerCase()) // remove spaces and lowercase
-        : [];
+    const parsedTags = typeof tags === 'string' ? tags.split(',').map(tag => tag.trim().toLowerCase()) : [];
 
-    const imageData = await uploadImageToCloudinary(req.file.buffer);
+    const imageData = await uploadImageToCloudinary(files.original[0].buffer, files.cropped[0].buffer);
 
     const image = await ImageModel.create({
       userId,
@@ -49,8 +51,9 @@ export const getImages = async (req: Request, res: Response) => {
       .skip((+page - 1) * +limit)
       .limit(+limit)
       .select({
-        userId: 1, // include userId
-        'image.cropped.url': 1, // include only cropped image URL
+        userId: 1,
+        'image.original.url': 1,
+        'image.cropped.url': 1,
         _id: 0,
       });
 
