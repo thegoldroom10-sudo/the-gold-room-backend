@@ -52,6 +52,8 @@ export const getImages = async (req: Request, res: Response) => {
       .limit(+limit)
       .select({
         userId: 1,
+        title: 1,
+        tags: 1,
         'image.original.url': 1,
         'image.cropped.url': 1,
         _id: 0,
