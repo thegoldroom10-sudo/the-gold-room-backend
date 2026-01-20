@@ -12,13 +12,14 @@ export const loginUser = async (req: Request, res: Response) => {
   const user = await User.findOne({ email }).select('+password');
 
   if (user && (await user.comparePassword(password))) {
-    generateTokens(res, user);
+    const { accessToken, refreshToken } = generateTokens(user);
 
     res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
-      role: user.role,
+      accessToken,
+      refreshToken,
     });
   } else {
     res.status(401);
@@ -46,13 +47,14 @@ export const registerUser = async (req: Request, res: Response) => {
   });
 
   if (user) {
-    generateTokens(res, user);
+    const { accessToken, refreshToken } = generateTokens(user);
 
     res.status(201).json({
       _id: user._id,
       name: user.name,
       email: user.email,
-      role: user.role,
+      accessToken,
+      refreshToken,
     });
   } else {
     res.status(400);
@@ -132,7 +134,7 @@ export const deleteUser = async (req: Request, res: Response) => {
   const user = await User.findById(req.params.id);
 
   if (user) {
-    if (user.role == "admin") {
+    if (user.role == 'admin') {
       res.status(400);
       throw new Error('Cannot delete admin user');
     }
@@ -167,8 +169,8 @@ export const updateUser = async (req: Request, res: Response) => {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
     if (req.body.role) {
-    user.role = req.body.role; // allow admin to change role
-  }
+      user.role = req.body.role; // allow admin to change role
+    }
 
     const updatedUser = await user.save();
 
